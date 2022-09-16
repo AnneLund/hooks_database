@@ -10,12 +10,12 @@ async function handler(req, res) {
     })
 
     if(req.method === "PUT") {
-        const {id, name} = req.body
-        if(!id || !name){
+        const {id, title} = req.body
+        if(!id || !title){
             res.status(422).json({message: "Invalid data"})
             return;
         }
-await executeQuery(`UPDATE users SET name = '${name}' WHERE id = '${id}'`)
+await executeQuery(`UPDATE school SET title = '${title}' WHERE id = '${id}'`)
 res.status(201).json({message: "Data deleted!"})
 return;
     }
@@ -26,7 +26,7 @@ return;
             res.status(422).json({message: "Invalid data"})
             return;
         }
-await executeQuery(`DELETE FROM users WHERE id = '${id}'`)
+await executeQuery(`DELETE FROM school WHERE id = '${id}'`)
 res.status(201).json({message: "Data deleted!"})
 return;
     }
@@ -37,13 +37,13 @@ if(req.method === "POST") {
         res.status(422).json({message: "Invalid data"})
         return;
     }
-    const data = await executeQuery(`INSERT INTO users(id) VALUES('${id}')`)
+    const data = await executeQuery(`INSERT INTO school(id) VALUES('${id}')`)
     res.status(201).json({message: "Data created!", data})
     return;
 }
 
 if(req.method === "GET") {
-const data = await executeQuery(`SELECT * FROM users`)
+const data = await executeQuery(`SELECT * FROM school`)
 res.status(201).json({message: "Data fetch", data})
 return;
 }
