@@ -43,7 +43,7 @@ if(req.method === "POST") {
 }
 
 if(req.method === "GET") {
-const data = await executeQuery(`SELECT * FROM school`)
+const data = await executeQuery(`SELECT * FROM school WHERE idx = '${idx}'`)
 res.status(201).json({message: "Data fetch", data})
 return;
 }
