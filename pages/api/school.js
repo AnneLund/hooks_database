@@ -15,7 +15,7 @@ async function handler(req, res) {
             res.status(422).json({message: "Invalid data"})
             return;
         }
-await executeQuery(`UPDATE school SET title = '${title}' WHERE id = '${idx}'`)
+await executeQuery(`UPDATE school SET title = '${title}' WHERE idx = '${idx}'`)
 res.status(201).json({message: "Data deleted!"})
 return;
     }
@@ -26,7 +26,7 @@ return;
             res.status(422).json({message: "Invalid data"})
             return;
         }
-await executeQuery(`DELETE FROM school WHERE id = '${idx}'`)
+await executeQuery(`DELETE FROM school WHERE idx = '${idx}'`)
 res.status(201).json({message: "Data deleted!"})
 return;
     }
@@ -37,7 +37,7 @@ if(req.method === "POST") {
         res.status(422).json({message: "Invalid data"})
         return;
     }
-    const data = await executeQuery(`INSERT INTO school(id) VALUES('${idx}')`)
+    const data = await executeQuery(`INSERT INTO school(idx) VALUES('${idx}')`)
     res.status(201).json({message: "Data created!", data})
     return;
 }
